@@ -20,22 +20,23 @@ public class TriangleSum {
     public static void main(String[] args) {
 
     }
+
     public int minimumTotal(List<List<Integer>> triangle) {
         List<List<Integer>> result = new ArrayList<>();
-        if(triangle.size() == 1) {
+        if (triangle.size() == 1) {
             return triangle.get(0).get(0);
         }
         result.add(triangle.get(0));
-        for(int i = 1;i<triangle.size();i++) {
+        for (int i = 1; i < triangle.size(); i++) {
             List<Integer> currList = triangle.get(i);
             List<Integer> minSum = new ArrayList<>();
-            for(int j = 0; j<currList.size();j++) {
-                if(j == 0) {
-                    minSum.add(result.get(i-1).get(0) + currList.get(j));
-                } else if(j == currList.size() -1) {
-                    minSum.add(result.get(i-1).get(result.size()-1) + currList.get(j));
+            for (int j = 0; j < currList.size(); j++) {
+                if (j == 0) {
+                    minSum.add(result.get(i - 1).get(0) + currList.get(j));
+                } else if (j == currList.size() - 1) {
+                    minSum.add(result.get(i - 1).get(result.size() - 1) + currList.get(j));
                 } else {
-                    int min = Math.min(result.get(i-1).get(j), result.get(i-1).get(j-1));
+                    int min = Math.min(result.get(i - 1).get(j), result.get(i - 1).get(j - 1));
                     minSum.add(currList.get(j) + min);
                 }
             }
@@ -43,8 +44,8 @@ public class TriangleSum {
 
         }
         int finalSum = Integer.MAX_VALUE;
-        for(int sum : result.get(result.size()-1)) {
-            if(sum < finalSum) {
+        for (int sum : result.get(result.size() - 1)) {
+            if (sum < finalSum) {
                 finalSum = sum;
             }
         }
